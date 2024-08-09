@@ -2,14 +2,16 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 import { SvgXml } from "react-native-svg";
-import { theme } from "../../../../../styles/theme.style";
+
+import  IconButton from "../../../../../components/IconButton";
+import { theme, colors } from "../../../../../styles/theme.style";
+import { arrowBack } from "../../../../../assets/svg";
+
 
 const HeaderBar = ({navigation}: any): React.JSX.Element => {
     return (
-        <View style={theme.background}>
-            <TouchableOpacity onPress={navigation.goBack}>
-                <Text style={theme.text}>Back</Text>
-            </TouchableOpacity>
+        <View style={{backgroundColor: colors.background}}>
+            <IconButton onPress={() => navigation.goBack()} svg={arrowBack} />
         </View>
     );
 }

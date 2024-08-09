@@ -13,7 +13,8 @@ function Note({navigation}: any): React.JSX.Element {
     return(
         <SafeAreaView style={theme.background}>
             <HeaderBar navigation={navigation}/>
-            <TextInput style={theme.text} placeholder="Title"/>
+            <TextInput style={theme.h1} placeholder="Title" placeholderTextColor={colors.placeholder}/>
+            <TextInput style={theme.text} placeholder="Note" placeholderTextColor={colors.placeholder}/>
         </SafeAreaView>
     );
 };

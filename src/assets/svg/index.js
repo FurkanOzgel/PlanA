@@ -6,7 +6,8 @@ import timerIcon from "./timer"
 import todoIcon from "./todo"
 import dashboardIcon from "./dashboard"
 import notesIcon from "./notes"
+import arrowBack from "./arrowBack"
 
 export { addIcon, reportIcon, searchIcon,
     targetIcon, timerIcon, todoIcon, notesIcon,
-    dashboardIcon }
+    dashboardIcon, arrowBack }
