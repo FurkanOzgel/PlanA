@@ -2,13 +2,16 @@ import { StyleSheet } from 'react-native';
 
 const theme = StyleSheet.create({
     text: {
-        color: 'black',
+        color: 'white',
         fontSize: 16,
         fontWeight: 'normal'
     },
     background: {
         backgroundColor: '#202020',
         flex: 1
+    },
+    h1: {
+
     }
 });
 

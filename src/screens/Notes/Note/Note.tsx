@@ -1,13 +1,19 @@
 import React from 'react';
 import {
     SafeAreaView,
-    Text
+    Text,
+    TextInput,
+    TouchableOpacity
   } from 'react-native';
 
-function Note(): React.JSX.Element {
+import { theme, colors } from '../../../styles/theme.style';
+import HeaderBar from './components/HeaderBar';
+
+function Note({navigation}: any): React.JSX.Element {
     return(
-        <SafeAreaView>
-            <Text>Note</Text>
+        <SafeAreaView style={theme.background}>
+            <HeaderBar navigation={navigation}/>
+            <TextInput style={theme.text} placeholder="Title"/>
         </SafeAreaView>
     );
 };
