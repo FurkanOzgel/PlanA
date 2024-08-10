@@ -1,13 +1,20 @@
-import {combineReducers, createStore, applyMiddleware} from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { noteListReducer } from '../Note/reducers';
-// import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
+
+const logger = createLogger();
 
 const rootReducer = combineReducers({
-    noteList: noteListReducer,
+    Note: noteListReducer,
 });
 
 export type AppState = ReturnType<typeof rootReducer>;
 
-export default createStore(rootReducer);
+const store = configureStore({
+    reducer: rootReducer,
+    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
+
+export default store;
 
 export type RootState = ReturnType<typeof rootReducer>

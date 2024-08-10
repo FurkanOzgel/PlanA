@@ -11,9 +11,16 @@ const theme = StyleSheet.create({
         flex: 1
     },
     h1: {
+        color: 'white',
         fontSize: 32,
         fontWeight: 'bold'
-    }
+    },
+    h2: {
+        color: 'white',
+        fontSize: 24,
+        fontWeight: 'bold'
+    },
+
 });
 
 const colors = {
@@ -24,7 +31,7 @@ const colors = {
     component_header_text_tint: '#DEDEDE',
     active_tab_icon_tint: '#A8A8A8',
     inactive_tab_icon_tint: '#5A5A5A',
-    border: '#333232',
+    border: '#555454',
     placeholder: '#858484'
 };
 

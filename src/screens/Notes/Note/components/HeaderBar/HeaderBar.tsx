@@ -7,11 +7,14 @@ import  IconButton from "../../../../../components/IconButton";
 import { theme, colors } from "../../../../../styles/theme.style";
 import { arrowBack } from "../../../../../assets/svg";
 
+interface HeaderBarProps {
+    onBackPress: () => void;
+}
 
-const HeaderBar = ({navigation}: any): React.JSX.Element => {
+const HeaderBar = ({onBackPress}: HeaderBarProps): React.JSX.Element => {
     return (
         <View style={{backgroundColor: colors.background}}>
-            <IconButton onPress={() => navigation.goBack()} svg={arrowBack} />
+            <IconButton onPress={onBackPress} svg={arrowBack} />
         </View>
     );
 }

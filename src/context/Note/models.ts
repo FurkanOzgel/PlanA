@@ -1,11 +1,12 @@
-export interface Note {
+export interface NoteData {
     id: number;
-    header: string;
+    title: string;
+    note: string;
     color: string;
-    date: Date;
+    date: string;
     isPinned: boolean
 }
 
 export interface NoteList {
-    noteList: Note[]
+    noteList: NoteData[]
 }
