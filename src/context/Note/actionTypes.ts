@@ -2,7 +2,7 @@ import { NoteData } from './models';
 export const ADD_NOTE = 'ADD_NOTE';
 export const PIN_NOTE = 'PIN_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
-export const UPDATE_NOTE = 'UPDATE_NOTE'
+export const EDIT_NOTE = 'EDIT_NOTE'
 
 interface AddNoteAction {
     type: typeof ADD_NOTE;
@@ -19,9 +19,9 @@ interface DeleteNoteAction {
     payload: NoteData;
 }
 
-interface UpdateNoteAction {
-    type: typeof UPDATE_NOTE;
+interface EditNoteAction {
+    type: typeof EDIT_NOTE;
     payload: NoteData;
 }
 
-export type NoteListActionTypes = AddNoteAction | PinNoteAction | DeleteNoteAction | UpdateNoteAction
+export type NoteListActionTypes = AddNoteAction | PinNoteAction | DeleteNoteAction | EditNoteAction

@@ -21,15 +21,14 @@ function NoteList({navigation}: any): React.JSX.Element {
     };
 
     const notes = useSelector((state: any) => state.Note.noteList);
-    console.log(notes);
-
+    
     return(
         <SafeAreaView style={theme.background}>
             <SearchBar/>
             <FlatList
                 style={styles.flatList}
                 data={notes}
-                renderItem={({item}) => <NoteCard noteData={item.noteData}/>}
+                renderItem={({item}) => <NoteCard noteData={item}/>}
             />
             <AddButton onPress={handleAdd}/>
         </SafeAreaView>

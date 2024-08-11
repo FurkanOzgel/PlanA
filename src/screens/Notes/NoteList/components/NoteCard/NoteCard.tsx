@@ -3,15 +3,25 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
 import { theme, colors } from "../../../../../styles/theme.style";
 import { NoteData } from "../../../../../context/Note/models";
+import { useNavigation } from "@react-navigation/native";
+import Note from "../../../Note";
+
+import { StackNavigationProp } from '@react-navigation/stack';
 
 interface NoteCardProps {
     noteData: NoteData;
 }
 
+type RootStackParamList = {
+    Note: { NoteData: NoteData } | undefined;
+};
+
 const NoteCard = ({noteData}: NoteCardProps) => {
+
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
     const handleGoNote = () => {
-        console.log("Go to Note");
-        console.log(noteData.id);
+        navigation.navigate('Note', {NoteData: noteData});
     };
 
     return (

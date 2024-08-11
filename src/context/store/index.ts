@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { noteListReducer } from '../Note/reducers';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 
-const logger = createLogger();
+// const logger = createLogger();
 
 const rootReducer = combineReducers({
     Note: noteListReducer,
