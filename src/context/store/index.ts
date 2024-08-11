@@ -1,5 +1,9 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers, createStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { noteListReducer } from '../Note/reducers';
+import storage from 'redux-persist/lib/storage';
 // import { createLogger } from 'redux-logger';
 
 // const logger = createLogger();
@@ -8,13 +12,17 @@ const rootReducer = combineReducers({
     Note: noteListReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
 
-const store = configureStore({
-    reducer: rootReducer,
-    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage,
+}
+   
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export let store = configureStore({
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
 });
 
-export default store;
-
-export type RootState = ReturnType<typeof rootReducer>
+export let persistor = persistStore(store as any);

@@ -16,7 +16,7 @@ export function noteListReducer(
                 noteList: [...state.noteList, { ...action.payload }]
             };
         case DELETE_NOTE:
-            const noteIndexToDelete = state.noteList.findIndex(note => note.id === action.payload.id);
+            const noteIndexToDelete = state.noteList.findIndex(note => note.id == action.payload);
             return {
                 ...state,
                 noteList: state.noteList.filter((_, index) => index !== noteIndexToDelete)

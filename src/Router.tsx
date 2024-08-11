@@ -3,9 +3,10 @@ import { StatusBar } from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { theme, colors } from './styles/theme.style';
-import store from './context/store';
+import { store, persistor } from './context/store';
 import AppTab from './navigation/AppTab';
 
 StatusBar.setBarStyle('light-content', true);
@@ -23,7 +24,9 @@ const Router = (): React.JSX.Element => {
 const App = (): React.JSX.Element => {
     return (
         <Provider store={store}>
-            <Router />
+            <PersistGate loading={null} persistor={persistor}>
+                <Router />
+            </PersistGate>
         </Provider>
     );
 };

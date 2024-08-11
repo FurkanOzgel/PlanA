@@ -21,7 +21,7 @@ function NoteList({navigation}: any): React.JSX.Element {
     };
 
     const notes = useSelector((state: any) => state.Note.noteList);
-    
+
     return(
         <SafeAreaView style={theme.background}>
             <SearchBar/>
