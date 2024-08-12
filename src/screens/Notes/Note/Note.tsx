@@ -12,7 +12,7 @@ import { NoteData } from "../../../context/Note/models";
 import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-function Note({navigation, route}: any): React.JSX.Element {
+function Note({navigation, route}: any): React.JSX.Element { //TODO: Focus on note input when opened a new note
 
     let isNewNote;  
     route.params && 'NoteData' in route.params ? isNewNote = false : isNewNote = true;
