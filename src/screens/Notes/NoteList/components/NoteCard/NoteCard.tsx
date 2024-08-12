@@ -11,13 +11,14 @@ interface NoteCardProps {
     noteData: NoteData;
     selectedNotes: number[];
     setSelectedNotes: (notes: number[]) => void;
+    searchText: string;
 }
 
 type RootStackParamList = {
     Note: { NoteData: NoteData } | undefined;
 };
 
-const NoteCard = ({noteData, selectedNotes, setSelectedNotes}: NoteCardProps) => {
+const NoteCard = ({noteData, selectedNotes, setSelectedNotes, searchText}: NoteCardProps) => { // TODO: Add searchText highlighter
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
     const isSelected = selectedNotes.includes(noteData.id);
 

@@ -12,13 +12,17 @@ import styles from './SearchBar.style';
 import { theme, colors } from '../../styles/theme.style';
 import { searchIcon } from '../../assets/svg';
 
-function SearchBar(): React.JSX.Element {
+interface SearchBarProps {
+    onValueChange: (value: string) => void;
+}
+
+function SearchBar({onValueChange}: SearchBarProps): React.JSX.Element {
     return(
         <SafeAreaView style={styles.seacrh_bar_container}>
             <View style={styles.icon_container}>
                 <SvgXml xml={searchIcon} height={24} width={24}/>
             </View>
-            <TextInput placeholder='Search' placeholderTextColor={colors.component_text_tint} style = {{width:'100%'}}/>
+            <TextInput placeholder='Search' placeholderTextColor={colors.component_text_tint} style = {{width:'100%'}} onChangeText={onValueChange}/>
         </SafeAreaView>
     );
 };

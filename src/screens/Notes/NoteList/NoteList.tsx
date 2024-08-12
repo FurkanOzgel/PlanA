@@ -15,6 +15,9 @@ function NoteList({navigation}: any): React.JSX.Element {
 
     const [selectedNotes, setSelectedNotes] = useState<number[]>([]);
     const [onSelectMode, setOnSelectMode] = useState(false);
+    const [onSearchMode, setOnSearchMode] = useState(false);
+    const [searchResponse, setSearchResponse] = useState<any[]>([]);
+    const [searchText, setSearchText] = useState('');
 
     const dispatch = useDispatch();
 
@@ -40,15 +43,29 @@ function NoteList({navigation}: any): React.JSX.Element {
         setSelectedNotes([]);
     };
 
+    function handleValueChange(value: string) {
+        setSearchText(value);
+        if (value === '') {
+            setOnSearchMode(false);
+            setSearchResponse([]);
+        } else {
+            setOnSearchMode(true);
+            const filteredNotes = notes.filter((note: any) => 
+                note.title.includes(value) || note.note.includes(value)
+            );
+            setSearchResponse(filteredNotes);
+        }
+    };
+
     const notes = useSelector((state: any) => state.Note.noteList);
 
     return(
         <SafeAreaView style={theme.background}>
-            {onSelectMode ? <SelectionBar onDeleteSelected={handleDelete}/>: <SearchBar/>}
+            {onSelectMode ? <SelectionBar onDeleteSelected={handleDelete}/>: <SearchBar onValueChange={handleValueChange}/>}
             <FlatList
                 style={styles.flatList}
-                data={notes}
-                renderItem={({item}) => <NoteCard noteData={item} selectedNotes={selectedNotes} setSelectedNotes={setSelectedNotes}/>}
+                data={onSearchMode ? searchResponse : notes}
+                renderItem={({item}) => <NoteCard noteData={item} selectedNotes={selectedNotes} setSelectedNotes={setSelectedNotes} searchText={searchText}/>}
             />
             <AddButton onPress={handleAdd}/>
         </SafeAreaView>
