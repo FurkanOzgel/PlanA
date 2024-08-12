@@ -4,7 +4,6 @@ import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { theme, colors } from "../../../../../styles/theme.style";
 import { NoteData } from "../../../../../context/Note/models";
 import { useNavigation } from "@react-navigation/native";
-import Note from "../../../Note";
 
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -43,7 +42,7 @@ const NoteCard = ({noteData, selectedNotes, setSelectedNotes}: NoteCardProps) =>
     return (
         <TouchableOpacity style={[styles.container, isSelected ? styles.selected: null]} onPress={handleGoNote} onLongPress={onLongPress}>
             <Text style={theme.h2}>{noteData.title}</Text>
-            <Text style={theme.text}>{noteData.note}</Text>
+            <Text style={theme.text} numberOfLines={3} ellipsizeMode="tail">{noteData.note}</Text>
         </TouchableOpacity>
     );
 };
