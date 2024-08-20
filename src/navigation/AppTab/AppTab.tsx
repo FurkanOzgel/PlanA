@@ -5,8 +5,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from "react-native-svg";
 
-import Note from './../../screens/Notes/Note';
-import NoteList from './../../screens/Notes/NoteList';
+import { Note, NoteList } from "../../screens/Notes";
+import { TodoRouter } from "../../screens/Todo";
 import { theme, colors } from "../../styles/theme.style";
 import { timerIcon, targetIcon, todoIcon, notesIcon, dashboardIcon } from "../../assets/svg";
 
@@ -82,9 +82,9 @@ const NotesStack = (): React.JSX.Element  => {
 
 const ToDoStack = (): React.JSX.Element  => {   
     return (
-        <SafeAreaView style={theme.background}>
-            <Text>ToDoStack</Text>
-        </SafeAreaView>
+        <Stack.Navigator screenOptions={{headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forNoAnimation}}>
+            <Stack.Screen name="TodoRouter" component={TodoRouter} />
+        </Stack.Navigator>
     );
 };
 
