@@ -3,13 +3,14 @@ import { persistStore, persistReducer } from 'redux-persist'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { noteListReducer } from '../Note/reducers';
-import storage from 'redux-persist/lib/storage';
+import { todoListReducer } from '../ToDo/reducers';
 import { createLogger } from 'redux-logger';
 
 const logger = createLogger();
 
 const rootReducer = combineReducers({
     Note: noteListReducer,
+    ToDo: todoListReducer
 });
 
 
@@ -22,7 +23,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export let store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}).concat(logger),
 });
 
 export let persistor = persistStore(store as any);
