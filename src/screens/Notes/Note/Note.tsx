@@ -10,7 +10,8 @@ import HeaderBar from './components/HeaderBar';
 import { NoteData } from "../../../context/Note/models";
 
 import { useDispatch } from 'react-redux';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { generateRandomId } from '../../../utils/id';
 
 function Note({navigation, route}: any): React.JSX.Element { //TODO: Focus on note input when opened a new note
 
@@ -36,16 +37,7 @@ function Note({navigation, route}: any): React.JSX.Element { //TODO: Focus on no
 
     const saveNote = () => {
         if (isNewNote) {
-            AsyncStorage.getItem('lastNoteId').then((value) => {
-                if (value !== null) {
-                    const id = parseInt(value) + 1;
-                    AsyncStorage.setItem('lastNoteId', id.toString());
-                    addNoteToRedux(id);
-                } else {
-                    AsyncStorage.setItem('lastNoteId', '0');
-                    addNoteToRedux(0);
-                }
-            })
+            addNoteToRedux(generateRandomId());
         }else{
             if (title != route.params.NoteData.title || note != route.params.NoteData.note) {
                 const noteData: NoteData = {

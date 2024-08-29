@@ -1,33 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { styles } from "./TodoRouter.style";
 
 import { theme, colors } from "../../../styles/theme.style";
 import SearchBar from "../../../components/SearchBar";
 import { FlatList } from "react-native-gesture-handler";
-
-function TodoListCard() {
-    return (
-        <View style={styles.todoListCard}>
-            <Text>TodoListCard</Text>
-        </View>
-    );
-};
+import TodoListCard from "./components/ToDoListCard";
+import { useSelector } from "react-redux";
+import AddButton from "../../../components/AddButton";
+import PopUpInput from "./components/PopUpInput";
 
 function TodoRouter() {
-    return (
+    const [popUpVisible, setPopUpVisible] = useState(false);
+
+
+    const handleAddList = () => {
+        setPopUpVisible(true);
+    }
+
+    const ToDoLists = useSelector((state: any) => state.ToDo.todoLists);
+    return ( // TODO: Add non deleteable three list
         <View style={theme.background}>
+            <PopUpInput visible={popUpVisible} setVisible={setPopUpVisible}/>
             <SearchBar onValueChange={() => {}}/>
-
-            <View style={styles.container}>
+            {/* <View style={styles.container}> 
                 <TodoListCard/>
                 <TodoListCard/>
                 <TodoListCard/>
-            </View>
-
+            </View> */}
             <FlatList
-                data={[]}
-                renderItem={TodoListCard}/>
+                data={ToDoLists}
+                renderItem={({item}) => <TodoListCard group={item}/> }/>
+            <AddButton onPress={handleAddList}/>
         </View>
     );
 };

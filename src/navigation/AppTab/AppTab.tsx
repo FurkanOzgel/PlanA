@@ -6,7 +6,7 @@ import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/
 import { SvgXml } from "react-native-svg";
 
 import { Note, NoteList } from "../../screens/Notes";
-import { TodoRouter } from "../../screens/Todo";
+import { TodoRouter, TodoList } from "../../screens/Todo";
 import { theme, colors } from "../../styles/theme.style";
 import { timerIcon, targetIcon, todoIcon, notesIcon, dashboardIcon } from "../../assets/svg";
 
@@ -84,6 +84,7 @@ const ToDoStack = (): React.JSX.Element  => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forNoAnimation}}>
             <Stack.Screen name="TodoRouter" component={TodoRouter} />
+            <Stack.Screen name="TodoList" component={TodoList} />
         </Stack.Navigator>
     );
 };
