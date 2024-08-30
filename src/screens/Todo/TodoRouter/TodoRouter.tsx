@@ -28,7 +28,7 @@ function TodoRouter() {
                 <TodoListCard/>
                 <TodoListCard/>
             </View> */}
-            <FlatList
+            <FlatList //TODO: The user can change the order of the lists
                 data={ToDoLists}
                 renderItem={({item}) => <TodoListCard group={item}/> }/>
             <AddButton onPress={handleAddList}/>

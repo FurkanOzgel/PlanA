@@ -5,10 +5,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from "react-native-svg";
 
-import { Note, NoteList } from "../../screens/Notes";
-import { TodoRouter, TodoList } from "../../screens/Todo";
 import { theme, colors } from "../../styles/theme.style";
 import { timerIcon, targetIcon, todoIcon, notesIcon, dashboardIcon } from "../../assets/svg";
+
+import { Note, NoteList } from "../../screens/Notes";
+import { TodoRouter, TodoList } from "../../screens/Todo";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
