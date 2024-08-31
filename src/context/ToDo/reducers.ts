@@ -1,5 +1,5 @@
 import { TodoLists } from "./models";
-import { ToDoListActionTypes, add_list, delete_list, add_todo, delete_todo, edit_todo, star_todo } from "./actionTypes";
+import { ToDoListActionTypes, change_status_todo, add_list, delete_list, add_todo, delete_todo, edit_todo, star_todo } from "./actionTypes";
 
 const initialState: TodoLists = {
     todoLists: []
@@ -10,6 +10,28 @@ export function todoListReducer(
     action: ToDoListActionTypes,
 ): TodoLists {
     switch (action.type) {
+        case change_status_todo:
+            return {
+                ...state,
+                todoLists: state.todoLists.map((todoList) => {
+                    if (todoList.id === action.payload.listId) {
+                        return {
+                            ...todoList,
+                            tasks: todoList.tasks.map((task) => {
+                                if (task.id === action.payload.taskId) {
+                                    return {
+                                        ...task,
+                                        isDone: !task.isDone
+                                    };
+                                }
+                                return task;
+                            })
+                        };
+                    }
+                    return todoList;
+                })
+            };
+
         case add_todo:
             return {
                 ...state,
@@ -23,6 +45,7 @@ export function todoListReducer(
                     return todoList;
                 })
             };
+        
         case delete_todo:
             return {
                 ...state,

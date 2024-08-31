@@ -18,3 +18,8 @@ export interface TodoList {
 export interface TodoLists { 
     todoLists: TodoList[];
 }
+
+export interface TodoLocation {
+    listId: number;
+    taskId: number;
+}
