@@ -51,7 +51,8 @@ function NoteList({navigation}: any): React.JSX.Element {
         } else {
             setOnSearchMode(true);
             const filteredNotes = notes.filter((note: any) => 
-                note.title.includes(value) || note.note.includes(value)
+                note.title.toLowerCase().includes(value.toLowerCase()) ||
+                    note.note.toLowerCase().includes(value.toLowerCase())
             );
             setSearchResponse(filteredNotes);
         }

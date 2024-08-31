@@ -27,7 +27,6 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     const selector = useSelector((state: any) => state.ToDo);
 
     const createTask = () => {
-        console.log('Create Task');
         const newTask: ToDoData = {
             isDone: false,
             title: task,
