@@ -10,6 +10,7 @@ import { timerIcon, targetIcon, todoIcon, notesIcon, dashboardIcon } from "../..
 
 import { Note, NoteList } from "../../screens/Notes";
 import { TodoRouter, TodoList } from "../../screens/Todo";
+import { Timer } from "../../screens/FocusTimer";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -30,7 +31,7 @@ const AppTab = (): React.JSX.Element => {
                 borderTopColor: colors.border
             },
             tabBarIcon:(props) => {
-                if(route.name === 'Timer'){
+                if(route.name === 'FocusTimer'){
                     return <SvgXml xml={timerIcon} width={24} height={24} fill={props.color}/>
                 }
                 else if(route.name ==='Target'){
@@ -46,7 +47,7 @@ const AppTab = (): React.JSX.Element => {
                     return <SvgXml xml={dashboardIcon} width={24} height={24} fill={props.color}/>
                 }
         }}}}>
-        <Tab.Screen name="Timer" component={TimerStack} />
+        <Tab.Screen name="FocusTimer" component={TimerStack} />
         <Tab.Screen name="Target" component={TargetStack} />
         <Tab.Screen name="Dashboard" component={DashboardStack} />
         <Tab.Screen name="Notes" component={NotesStack} />
@@ -58,9 +59,9 @@ const AppTab = (): React.JSX.Element => {
 
 const TimerStack = (): React.JSX.Element  => {
     return (
-        <SafeAreaView style={theme.background}>
-            <Text>TimerStack</Text>
-        </SafeAreaView>
+        <Stack.Navigator screenOptions={{headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forNoAnimation}}>
+            <Stack.Screen name="Timer" component={Timer} />
+        </Stack.Navigator>
     );
 };  
 
