@@ -4,10 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { noteListReducer } from '../Note/reducers';
 import { todoListReducer } from '../ToDo/reducers';
+import { timerReducer } from '../Timer/reducers';
 
 const rootReducer = combineReducers({
     Note: noteListReducer,
-    ToDo: todoListReducer
+    ToDo: todoListReducer,
+    Timer: timerReducer
 });
 
 

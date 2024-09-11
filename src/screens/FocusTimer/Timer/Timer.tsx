@@ -8,15 +8,21 @@ import {
 
 import styles from './Timer.style';
 import {theme} from '../../../styles/theme.style';
-import { Switch } from 'react-native-gesture-handler';
+import { generateRandomId } from '../../../utils/id';
 
+import { Switch } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Timer(): React.JSX.Element {
 
     const [seconds, setSeconds] = useState(0);
     const [isStopwatch, setIsStopwatch] = useState(false);
-    const [intervalId, setIntervalId] = useState<NodeJS.Timeout | undefined>();
+    const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
     const [startSeconds, setStartSeconds] = useState(0);
+    const [startDateTime, setStartDateTime] = useState<string>();
+
+    const dispatch = useDispatch();
+    const timerLogs = useSelector((state: any) => state)
 
     useEffect(() => {
         if (!isStopwatch) {
@@ -32,6 +38,8 @@ function Timer(): React.JSX.Element {
             setSeconds(prevSeconds => prevSeconds + 1);
         }, 1000);
         setIntervalId(id);
+
+        setStartDateTime(new Date().getTime().toString());
     };
 
     const startPomodoro = ({time}: any) => {
@@ -39,6 +47,7 @@ function Timer(): React.JSX.Element {
             setSeconds((prevSeconds) => {
                 if (prevSeconds === 0) {
                     clearInterval(id);
+                    dispatch({type: 'ADD_SESSION', payload: {id: generateRandomId(), seconds: time, isStopwatch: isStopwatch, tag: "test", startDateTime: startDateTime}});
                     return prevSeconds;
                 }
                 return prevSeconds - 1;
@@ -49,6 +58,7 @@ function Timer(): React.JSX.Element {
 
     const stopTimer = () => {
         clearInterval(intervalId);
+        dispatch({type: 'ADD_SESSION', payload: {id: generateRandomId(), seconds: isStopwatch ? seconds : startSeconds - seconds, isStopwatch: isStopwatch, tag: "test", startDateTime: startDateTime}});
     };
 
     const resetTimer = () => {
@@ -74,6 +84,7 @@ function Timer(): React.JSX.Element {
             }}/>
             <Button title="Stop" onPress={stopTimer}/>
             <Button title="Reset" onPress={resetTimer}/>
+            <Button title="Log" onPress={() => console.log(timerLogs.Timer.timerLogs)}/>
         </View>
     );
 };
