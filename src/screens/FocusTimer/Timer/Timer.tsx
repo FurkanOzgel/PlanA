@@ -22,7 +22,6 @@ function Timer(): React.JSX.Element {
     const [startDateTime, setStartDateTime] = useState<string>();
 
     const dispatch = useDispatch();
-    const timerLogs = useSelector((state: any) => state)
 
     useEffect(() => {
         if (!isStopwatch) {
@@ -84,7 +83,6 @@ function Timer(): React.JSX.Element {
             }}/>
             <Button title="Stop" onPress={stopTimer}/>
             <Button title="Reset" onPress={resetTimer}/>
-            <Button title="Log" onPress={() => console.log(timerLogs.Timer.timerLogs)}/>
         </View>
     );
 };

@@ -8,7 +8,8 @@ import dashboardIcon from "./source/dashboard"
 import notesIcon from "./source/notes"
 import arrowBack from "./source/arrowBack"
 import bin from "./source/bin"
+import arrow from "./source/arrow"
 
 export { addIcon, reportIcon, searchIcon,
     targetIcon, timerIcon, todoIcon, notesIcon,
-    dashboardIcon, arrowBack, bin }
+    dashboardIcon, arrowBack, bin, arrow}
