@@ -1,24 +1,24 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-
+import { TouchableWithoutFeedback, GestureResponderEvent } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from "react-native-svg";
 
-import { theme, colors } from "../../styles/theme.style";
+import { colors } from "../../styles/theme.style";
 import { timerIcon, targetIcon, todoIcon, notesIcon, dashboardIcon } from "../../assets/svg";
 
 import { Note, NoteList } from "../../screens/Notes";
 import { TodoRouter, TodoList } from "../../screens/Todo";
 import { Timer } from "../../screens/FocusTimer";
 import { Target } from "../../screens/Targets";
+import { Board, Settings } from "../../screens/Dashboard";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const AppTab = (): React.JSX.Element => {
     return (
-    <Tab.Navigator initialRouteName="Notes"
+    <Tab.Navigator initialRouteName="ToDoTab"
         screenOptions={({ route }) => {
             return{
             tabBarShowLabel: false,
@@ -48,11 +48,11 @@ const AppTab = (): React.JSX.Element => {
                     return <SvgXml xml={dashboardIcon} width={24} height={24} fill={props.color}/>
                 }
         }}}}>
-        <Tab.Screen name="FocusTimerTab" component={TimerStack} />
-        <Tab.Screen name="TargetTab" component={TargetStack} />
-        {/* <Tab.Screen name="DashboardTab" component={DashboardStack} /> */}
-        <Tab.Screen name="NotesTab" component={NotesStack} />
         <Tab.Screen name="ToDoTab" component={ToDoStack} />
+        <Tab.Screen name="FocusTimerTab" component={TimerStack} />
+        <Tab.Screen name="DashboardTab" component={DashboardStack} />
+        <Tab.Screen name="TargetTab" component={TargetStack} />
+        <Tab.Screen name="NotesTab" component={NotesStack} />
     </Tab.Navigator>
     );
 };
@@ -92,12 +92,13 @@ const ToDoStack = (): React.JSX.Element  => {
     );
 };
 
-// const DashboardStack = (): React.JSX.Element  => {   
-//     return (
-//         <SafeAreaView style={theme.background}>
-//             <Text>Dashboard</Text>
-//         </SafeAreaView>
-//     );
-// };
+const DashboardStack = (): React.JSX.Element  => {   
+    return (
+        <Stack.Navigator screenOptions={{headerShown: false, cardStyleInterpolator: CardStyleInterpolators.forNoAnimation}}>
+            <Stack.Screen name="Board" component={Board} />
+            <Stack.Screen name="Settings" component={Settings} />
+        </Stack.Navigator>
+    );
+};
 
 export default AppTab;
