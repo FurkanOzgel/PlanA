@@ -2,16 +2,16 @@ import { StyleSheet } from 'react-native';
 import { colors } from '../../../../../styles/theme.style';
 
 const styles = StyleSheet.create({
-    listCard: {
-        backgroundColor: colors.component_backgroud,
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
         padding: 10,
-        margin: 10,
-        borderRadius: 10,
+        margin: 5,
+        marginTop: 0
     },
-    listText: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold'
+    label: {
+        fontSize: 16,
+        color: colors.text,
     }
 });
 

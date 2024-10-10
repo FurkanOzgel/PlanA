@@ -1,5 +1,8 @@
 import { StyleSheet } from 'react-native';
 
+const mode = 'dark';
+let colors: any;
+
 const theme = StyleSheet.create({
     text: {
         color: 'white',
@@ -19,11 +22,10 @@ const theme = StyleSheet.create({
         color: 'white',
         fontSize: 24,
         fontWeight: 'bold'
-    },
-
+    }
 });
 
-const colors = {
+const darkColorPalatte = {
     text: '#FFFFFF',
     background: '#202020',
     component_backgroud : '#252525',
@@ -34,5 +36,15 @@ const colors = {
     border: '#555454',
     placeholder: '#858484'
 };
+
+const lightColorPalatte = {
+
+}
+
+if( mode == 'dark') {
+    colors = darkColorPalatte;
+} else {
+    colors = lightColorPalatte;
+}
 
 export { theme, colors };

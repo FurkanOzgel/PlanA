@@ -13,6 +13,8 @@ import { generateRandomId } from '../../../utils/id';
 import { Switch } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 
+import TabHeader from '../../../components/TabHeader';
+
 function Timer(): React.JSX.Element {
 
     const [seconds, setSeconds] = useState(0);
@@ -70,6 +72,7 @@ function Timer(): React.JSX.Element {
 
     return(
         <View style={theme.background}>
+            <TabHeader text='Timer'/>
             <Text style={theme.h1}>{isStopwatch ? "Stopwatch" : "Pomodro"}</Text>
             <Text style={theme.h2}>{seconds}</Text>
             <TextInput style={{backgroundColor: "white"}} placeholder="Enter time in seconds" keyboardType="numeric" onChangeText={(value) => isStopwatch || setStartSeconds(Number(value))}/>

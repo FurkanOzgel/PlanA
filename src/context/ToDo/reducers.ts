@@ -1,8 +1,13 @@
 import { TodoLists } from "./models";
 import { ToDoListActionTypes, change_status_todo, add_list, delete_list, add_todo, delete_todo, edit_todo, star_todo } from "./actionTypes";
+import { generateRandomId } from "../../utils/id";
 
 const initialState: TodoLists = {
-    todoLists: []
+    todoLists: [
+        {id: generateRandomId(), name: "All", color:"red", icon:"", tasks: []},
+        {id: generateRandomId(), name: "My Day", color:"green", icon:"", tasks: []},
+        {id: generateRandomId(), name: "Habits", color:"blue", icon:"", tasks: []}
+    ]
 };
 
 export function todoListReducer(

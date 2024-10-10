@@ -1,57 +1,39 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { styles } from "./TodoRouter.style";
 
-import { theme, colors } from "../../../styles/theme.style";
-import SearchBar from "../../../components/SearchBar";
+import { theme } from "../../../styles/theme.style";
 import { FlatList } from "react-native-gesture-handler";
-import TodoListCard from "./components/ToDoListCard";
 import { useSelector } from "react-redux";
+
+import TodoListCard from "./components/ToDoListCard";
 import AddButton from "../../../components/AddButton";
 import PopUpInput from "./components/PopUpInput";
+import TabHeader from "../../../components/TabHeader";
 
 function TodoRouter() {
     const [popUpVisible, setPopUpVisible] = useState(false);
-    const [searchMode, setSearchMode] = useState(false);
-    const [searchResults, setSearchResults] = useState('');
-
-    const ToDoLists = useSelector((state: any) => state.ToDo.todoLists);
+    const TodoLists = useSelector((state: any) => state.ToDo.todoLists);
 
     const handleAddList = () => {
         setPopUpVisible(true);
     }
 
-    const search = (text: string) => {
-        if(text.length > 0){
-            setSearchMode(true);
-            const filteredTasks = ToDoLists.map((element: any) => { //TODO: Render comp for filtered tasks
-                return {
-                    ...element,
-                    tasks: element.tasks.filter((task: any) => {return task.title.toLowerCase().includes(text.toLowerCase())})
-                }
-                });
-        }else{
-            setSearchMode(false);
-        }
-    };
-
-    return ( // TODO: Add non deleteable three list
+    return (
         <View style={theme.background}>
+            <TabHeader text={"ToDo"}/>
             <PopUpInput visible={popUpVisible} setVisible={setPopUpVisible}/>
-            <SearchBar onValueChange={search}/>
-            {/* <View style={styles.container}> 
-                <TodoListCard/>
-                <TodoListCard/>
-                <TodoListCard/>
-            </View> */}
-            {searchMode ? <Text>{}</Text> : 
             <View style={{flex:1}}>
-                <FlatList //TODO: The user can change the order of the lists
-                    data={ToDoLists}
+                <View style={styles.defaultContainer}>
+                    <TodoListCard group={TodoLists[0]}/>
+                    <TodoListCard group={TodoLists[1]}/>
+                    <TodoListCard group={TodoLists[2]}/>
+                </View>
+                <FlatList
+                    data={TodoLists.slice(3)}
                     renderItem={({item}) => <TodoListCard group={item}/> }/>
                 <AddButton onPress={handleAddList}/>
             </View>
-            }
         </View>
     );
 };
