@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-    View,
-    Text,
-  } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './ToDoListCard.style';
 import { TodoList } from '../../../../../context/ToDo/models';
-import TextButton from '../../../../../components/TextButton';
 
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from '@react-navigation/stack';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 interface ToDoListCardProps {
     group: TodoList;
@@ -28,13 +24,13 @@ function ToDoListCard({group}: ToDoListCardProps): React.JSX.Element {
     };
 
     return(
-        <TouchableOpacity onPress={goList} style={styles.container}>
-            <View style={{flexDirection:"row"}}>
-                <Text style={{color:"white"}}>🔥</Text>
+        <TouchableNativeFeedback onPress={goList} style={styles.container}>
+            <View style={styles.left_side_container}>
+                <Text style={styles.list_emoji}>{group.icon}</Text>
                 <Text style={styles.label}>{group.name}</Text>
             </View>
             <Text style={styles.label}>{group.tasks.length !== 0 ? group.tasks.length : null}</Text>
-        </TouchableOpacity>
+        </TouchableNativeFeedback>
         
     );
 };

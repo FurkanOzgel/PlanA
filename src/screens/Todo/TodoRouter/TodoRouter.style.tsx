@@ -1,10 +1,11 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
 export const styles = StyleSheet.create({
-    container: {},
-    todoListCard: {},
-    defaultContainer: {
-        borderBottomColor: "white",
-        borderBottomWidth: 1,
-    },
+    hr: {
+        height: 1,
+        backgroundColor: '#fff',
+        width: Dimensions.get("window").width - 26,
+        alignSelf: "center",
+        marginVertical: 5
+    }
 });

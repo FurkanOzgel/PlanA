@@ -24,11 +24,12 @@ function TodoRouter() {
             <TabHeader text={"ToDo"}/>
             <PopUpInput visible={popUpVisible} setVisible={setPopUpVisible}/>
             <View style={{flex:1}}>
-                <View style={styles.defaultContainer}>
+                <View>
                     <TodoListCard group={TodoLists[0]}/>
                     <TodoListCard group={TodoLists[1]}/>
                     <TodoListCard group={TodoLists[2]}/>
                 </View>
+                <View style={styles.hr}/>
                 <FlatList
                     data={TodoLists.slice(3)}
                     renderItem={({item}) => <TodoListCard group={item}/> }/>

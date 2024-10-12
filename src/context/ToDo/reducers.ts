@@ -4,9 +4,9 @@ import { generateRandomId } from "../../utils/id";
 
 const initialState: TodoLists = {
     todoLists: [
-        {id: generateRandomId(), name: "All", color:"red", icon:"", tasks: []},
-        {id: generateRandomId(), name: "My Day", color:"green", icon:"", tasks: []},
-        {id: generateRandomId(), name: "Habits", color:"blue", icon:"", tasks: []}
+        {id: generateRandomId(), name: "All", color:"red", icon:"♾️", tasks: []},
+        {id: generateRandomId(), name: "My Day", color:"green", icon:"☀︎🔆", tasks: []},
+        {id: generateRandomId(), name: "Habits", color:"blue", icon:"2️⃣1️⃣", tasks: []}
     ]
 };
 

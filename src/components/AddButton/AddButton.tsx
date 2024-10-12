@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-    SafeAreaView,
-    Text,
-    TouchableOpacity
-  } from 'react-native';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
 
 import styles from './AddButton.style';
-import { theme, colors } from '../../styles/theme.style';
+
+import { SvgXml } from 'react-native-svg';
+import { addIcon } from '../../assets/svg';
 
 type Props = {
     onPress(): void 
@@ -17,7 +15,7 @@ function AddButton(props: Props): React.JSX.Element {
     return(
         <SafeAreaView style={styles.btn_container}>
             <TouchableOpacity onPress={onPress} style={styles.btn_touchable}>
-                <Text style={styles.btn_icon}>+</Text>
+                <SvgXml xml={addIcon} height={40} width={40}/>
             </TouchableOpacity>
         </SafeAreaView>
     );

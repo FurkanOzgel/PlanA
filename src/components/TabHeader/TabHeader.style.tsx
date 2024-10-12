@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../styles/theme.style';
 
 const styles = StyleSheet.create({
     text: {
         textAlign: 'center',
-        color: 'white',
+        color: colors.text,
     },
     container: {
-        backgroundColor: '#202020',
+        backgroundColor: colors.background,
         padding: 10
     }
 });

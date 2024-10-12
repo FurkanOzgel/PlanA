@@ -6,19 +6,18 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     btn_container:{
-        height:40,
-        width:40,
+        height:60,
+        width:60,
+        justifyContent: "center",
+        alignItems: "center",
         position: 'absolute',
         bottom: 10,
         right: 10,
-        backgroundColor: colors.component_backgroud,
-        
-    },
-    btn_icon: {
-        color: 'white'
+        backgroundColor: colors.button_background,
+        borderRadius: 20   
     }
 });
 
