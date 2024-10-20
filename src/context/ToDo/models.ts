@@ -13,6 +13,7 @@ export interface TodoList {
     color: string;
     icon: string;
     tasks: ToDoData[];
+    isDefault?: boolean;
 }
 
 export interface TodoLists { 

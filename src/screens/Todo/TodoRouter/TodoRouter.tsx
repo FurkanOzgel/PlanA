@@ -25,9 +25,9 @@ function TodoRouter() {
             <PopUpInput visible={popUpVisible} setVisible={setPopUpVisible}/>
             <View style={{flex:1}}>
                 <View>
-                    <TodoListCard group={TodoLists[0]}/>
-                    <TodoListCard group={TodoLists[1]}/>
-                    <TodoListCard group={TodoLists[2]}/>
+                    <TodoListCard group={TodoLists[1]} color="white" size={20}/>
+                    <TodoListCard group={TodoLists[0]} color="rgb(170,187,248)" size={20}/>
+                    <TodoListCard group={TodoLists[2]} color="rgb(255,132,48)" size={20}/>
                 </View>
                 <View style={styles.hr}/>
                 <FlatList

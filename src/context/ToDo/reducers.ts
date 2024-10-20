@@ -1,12 +1,13 @@
 import { TodoLists } from "./models";
 import { ToDoListActionTypes, change_status_todo, add_list, delete_list, add_todo, delete_todo, edit_todo, star_todo } from "./actionTypes";
 import { generateRandomId } from "../../utils/id";
+import { cycle, infinity, sun } from "../../assets/svg";
 
 const initialState: TodoLists = {
     todoLists: [
-        {id: generateRandomId(), name: "All", color:"red", icon:"♾️", tasks: []},
-        {id: generateRandomId(), name: "My Day", color:"green", icon:"☀︎🔆", tasks: []},
-        {id: generateRandomId(), name: "Habits", color:"blue", icon:"2️⃣1️⃣", tasks: []}
+        {id: generateRandomId(), name: "All", color:"red", icon: infinity, tasks: [], isDefault: true},
+        {id: generateRandomId(), name: "My Day", color:"green", icon: sun, tasks: [], isDefault: true},
+        {id: generateRandomId(), name: "Habits", color:"blue", icon: cycle, tasks: [], isDefault: true}
     ]
 };
 

@@ -9,7 +9,12 @@ import notesIcon from "./source/notes"
 import arrowBack from "./source/arrowBack"
 import bin from "./source/bin"
 import arrow from "./source/arrow"
+import cycle from "./source/cycle"
+import infinity from "./source/infinity"
+import sun from "./source/sun"
+import addEmoji from "./source/addEmoji"
 
 export { addIcon, reportIcon, searchIcon,
     targetIcon, timerIcon, todoIcon, notesIcon,
-    dashboardIcon, arrowBack, bin, arrow}
+    dashboardIcon, arrowBack, bin, arrow,
+    cycle, infinity, sun, addEmoji}

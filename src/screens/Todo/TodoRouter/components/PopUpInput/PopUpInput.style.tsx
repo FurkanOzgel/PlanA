@@ -7,22 +7,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    modalContainer: {
+    modal_container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
-    modalView: {
+    modal_view: {
         width: 300,
         padding: 20,
         backgroundColor: colors.component_backgroud,
         borderRadius: 10,
-        alignItems: 'center',
     },
-    modalText: {
+    modal_text: {
         marginBottom: 15,
-        textAlign: 'center',
         color: colors.text,
     },
     buttons: {
@@ -33,14 +31,20 @@ const styles = StyleSheet.create({
         justifyContent:"space-between"
     },
     input: {
-        width: '100%',
+        flex: 1,
+        margin: 10,
         height: 40,
-        margin: 12,
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
         borderColor: colors.text,
-        color: "white"
+        color: "white",
+        marginVertical: 12
+    },
+    input_section: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     }
 });
 

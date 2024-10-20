@@ -6,7 +6,7 @@ let colors: any;
 const darkColorPalatte = {
     text: '#FFFFFF',
     background: 'black',
-    component_backgroud : '#5271ff',
+    component_backgroud : '#323338',
     button_background: '#5271ff',
     component_text_tint: '#707070',
     component_header_text_tint: '#DEDEDE',

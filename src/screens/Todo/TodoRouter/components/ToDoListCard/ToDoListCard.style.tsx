@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: colors.text,
         alignItems: 'center',
-        fontWeight: 'bold'
     },
     list_emoji: {
         color: "white",
-        marginRight:10,
+        marginLeft: 5,
+        marginRight:15,
         fontSize:18
     },
     left_side_container: {
