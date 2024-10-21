@@ -13,8 +13,9 @@ import cycle from "./source/cycle"
 import infinity from "./source/infinity"
 import sun from "./source/sun"
 import addEmoji from "./source/addEmoji"
+import list from "./source/list"
 
 export { addIcon, reportIcon, searchIcon,
     targetIcon, timerIcon, todoIcon, notesIcon,
     dashboardIcon, arrowBack, bin, arrow,
-    cycle, infinity, sun, addEmoji}
+    cycle, infinity, sun, addEmoji, list}
