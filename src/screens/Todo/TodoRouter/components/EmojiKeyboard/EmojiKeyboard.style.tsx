@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from '../../../../../styles/theme.style';
 
 const styles = StyleSheet.create({
     emoji_btn: {
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
     },
     remove_btn_text: {
-        color: 'white',
+        color: colors.text,
         fontSize: 16,
         fontWeight: 'normal'
     }

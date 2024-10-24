@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import { styles } from "./TodoRouter.style";
 
 import { theme } from "../../../styles/theme.style";
 import { FlatList } from "react-native-gesture-handler";
@@ -29,7 +28,7 @@ function TodoRouter() {
                     <TodoListCard group={TodoLists[0]} color="rgb(170,187,248)" size={20}/>
                     <TodoListCard group={TodoLists[2]} color="rgb(255,132,48)" size={20}/>
                 </View>
-                <View style={styles.hr}/>
+                <View style={theme.hr}/>
                 <FlatList
                     data={TodoLists.slice(3)}
                     renderItem={({item}) => <TodoListCard group={item}/> }/>

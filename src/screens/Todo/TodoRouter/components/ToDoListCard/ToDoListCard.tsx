@@ -20,7 +20,7 @@ type RootStackParamList = {
     TodoList: { TodoListData: TodoList } | undefined;
 };
 
-function ToDoListCard({ group, color, size=22 }: ToDoListCardProps): React.JSX.Element {
+function ToDoListCard({ group, color, size=23 }: ToDoListCardProps): React.JSX.Element {
     const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
     const goList = () => {

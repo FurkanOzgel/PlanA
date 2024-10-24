@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10,
         borderColor: colors.text,
-        color: "white",
+        color: colors.text,
         marginVertical: 12
     },
     input_section: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     emoji_btn_text: {
-        color: "white",
+        color: colors.text,
         fontSize: 25,
     }
 });

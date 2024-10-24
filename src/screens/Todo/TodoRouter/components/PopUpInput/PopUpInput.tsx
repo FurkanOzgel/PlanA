@@ -10,7 +10,7 @@ import styles from './PopUpInput.style';
 
 import TextButton from '../../../../../components/TextButton';
 import IconButton from '../../../../../components/IconButton';
-import { theme } from '../../../../../styles/theme.style';
+import { colors, theme } from '../../../../../styles/theme.style';
 import { addEmoji, list } from '../../../../../assets/svg';
 
 import { useDispatch } from 'react-redux';
@@ -26,7 +26,7 @@ interface PopUpInputProps {
 function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element {
     const [groupName, setGroupName] = useState('');
 
-    const defaultColor = '#778BDE';
+    const defaultColor = colors.default_toDo_color;
     const [color, setColor] = useState(defaultColor);
     
     const defaultIcon = list;
@@ -80,7 +80,7 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
                             <TextButton text={icon} onPress={handleAddEmoji} textStyle={styles.emoji_btn_text}/> }
                         <TextInput
                             style={styles.input}
-                            placeholderTextColor={theme.text.color}
+                            placeholderTextColor={colors.placeholder}
                             placeholder="List Name"
                             value={groupName}
                             onChangeText={setGroupName}

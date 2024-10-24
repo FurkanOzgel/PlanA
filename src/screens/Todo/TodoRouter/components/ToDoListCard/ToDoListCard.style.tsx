@@ -9,15 +9,15 @@ const styles = StyleSheet.create({
         padding: 10
     },
     label: {
+        marginLeft: 40,
         fontSize: 16,
         color: colors.text,
         alignItems: 'center',
     },
     list_emoji: {
+        position: 'absolute',
         color: "white",
-        marginLeft: 5,
-        marginRight:15,
-        fontSize:18
+        fontSize:18,
     },
     left_side_container: {
         flexDirection: 'row',

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const mode: string = 'dark';
 let colors: any;
@@ -13,7 +13,8 @@ const darkColorPalatte = {
     active_tab_icon_tint: '#A8A8A8',
     inactive_tab_icon_tint: '#5A5A5A',
     border: '#555454',
-    placeholder: '#858484'
+    placeholder: '#858484',
+    default_toDo_color: '#778BDE'
 };
 
 const lightColorPalatte = {
@@ -26,7 +27,8 @@ const lightColorPalatte = {
     active_tab_icon_tint: '#A8A8A8',
     inactive_tab_icon_tint: '#5A5A5A',
     border: '#555454',
-    placeholder: '#858484'
+    placeholder: '#858484',
+    default_toDo_color: '#778BDE'
 }
 
 if( mode == 'dark') {
@@ -54,6 +56,13 @@ const theme = StyleSheet.create({
         color: 'white',
         fontSize: 24,
         fontWeight: 'bold'
+    },
+    hr: {
+        height: 1,
+        backgroundColor: '#fff',
+        width: Dimensions.get("window").width - 26,
+        alignSelf: "center",
+        marginVertical: 5
     }
 });
 
