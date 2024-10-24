@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     View,
     Modal,
@@ -36,6 +36,14 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        if(visible){
+            setGroupName('');
+            setColor(defaultColor);
+            setIcon(defaultIcon);
+        }
+    }, [visible]);
+
     const createGroup = () => {
         setVisible(!visible);
         setGroupName('');
@@ -43,7 +51,7 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
         setIcon(defaultIcon);
 
         const group = {
-            name: groupName,
+            name: groupName == '' ? 'Unnamed List' : groupName, 
             id: generateRandomId(),
             color: color,
             icon: icon,
