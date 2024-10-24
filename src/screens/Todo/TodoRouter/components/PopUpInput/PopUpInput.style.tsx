@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     emoji_btn_text: {
         color: colors.text,
         fontSize: 25,
+        marginBottom: 3
     }
 });
 

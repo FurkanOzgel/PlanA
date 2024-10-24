@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     emoji: {
         color: 'white',
-        fontSize: 25,
+        fontSize: 20,
     },
     flat_list: {
         height:90,
