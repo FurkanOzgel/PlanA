@@ -14,8 +14,13 @@ import infinity from "./source/infinity"
 import sun from "./source/sun"
 import addEmoji from "./source/addEmoji"
 import list from "./source/list"
+import addNotification from "./source/addNotification"
+import flag from "./source/flag"
+import repeatSquare from "./source/repeatSquare"
+import trackChanges from "./source/trackChanges"
 
 export { addIcon, reportIcon, searchIcon,
     targetIcon, timerIcon, todoIcon, notesIcon,
     dashboardIcon, arrowBack, bin, arrow,
-    cycle, infinity, sun, addEmoji, list}
+    cycle, infinity, sun, addEmoji, list,
+    addNotification, flag, repeatSquare, trackChanges}

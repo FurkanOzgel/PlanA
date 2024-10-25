@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
     View,
     Modal,
@@ -24,6 +24,8 @@ interface PopUpInputProps {
 }
 
 function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element {
+    const inputRef = useRef<TextInput>(null);
+
     const [groupName, setGroupName] = useState('');
 
     const defaultColor = colors.default_toDo_color;
@@ -41,6 +43,11 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
             setGroupName('');
             setColor(defaultColor);
             setIcon(defaultIcon);
+            const timer = setTimeout(() => {
+                if (inputRef.current) {
+                  inputRef.current.focus();
+                }
+              }, 500);
         }
     }, [visible]);
 
@@ -87,6 +94,7 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
                         {icon == defaultIcon ? <IconButton onPress={handleAddEmoji} svg={addEmoji}/>:
                             <TextButton text={icon} onPress={handleAddEmoji} textStyle={styles.emoji_btn_text}/> }
                         <TextInput
+                            ref={inputRef}
                             style={styles.input}
                             placeholderTextColor={colors.placeholder}
                             placeholder="List Name"
@@ -94,6 +102,7 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
                             onChangeText={setGroupName}
                             spellCheck={false}
                             autoCorrect={false}
+                            autoFocus={true}
                             />
                     </View>
                     <View>

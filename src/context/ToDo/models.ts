@@ -5,6 +5,11 @@ export interface ToDoData {
     id: number;
     isStarred: boolean;
     listId: number;
+    incremantalId?: number;
+    incremantValue?: number;
+    repateConfig?: {};
+    notificationConfig?: {};
+    habitConfig?: {};
 }
 
 export interface TodoList {
