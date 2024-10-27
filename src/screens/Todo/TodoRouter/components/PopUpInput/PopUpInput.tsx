@@ -13,7 +13,7 @@ import IconButton from '../../../../../components/IconButton';
 import { colors, theme } from '../../../../../styles/theme.style';
 import { addEmoji, list } from '../../../../../assets/svg';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { generateRandomId } from '../../../../../utils/id';
 import ColorKeyboard from '../ColorKeyboard';
 import EmojiKeyboard from '../EmojiKeyboard';
@@ -37,6 +37,9 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
     const [emojiInputMode, setEmojiInputMode] = useState(false);
 
     const dispatch = useDispatch();
+    const selector = useSelector((state: any) => state.ToDo);
+
+    const unnamedListCount = selector.todoLists.filter((list: any) => list.name.includes('Unnamed List')).length;
 
     useEffect(() => {
         if(visible){
@@ -58,7 +61,7 @@ function PopUpInput({visible, setVisible}: PopUpInputProps ): React.JSX.Element 
         setIcon(defaultIcon);
 
         const group = {
-            name: groupName == '' ? 'Unnamed List' : groupName, 
+            name: groupName == '' ? 'Unnamed List ' + (unnamedListCount + 1) : groupName, 
             id: generateRandomId(),
             color: color,
             icon: icon,

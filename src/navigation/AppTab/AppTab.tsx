@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableWithoutFeedback, GestureResponderEvent } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from "react-native-svg";
@@ -29,7 +28,9 @@ const AppTab = (): React.JSX.Element => {
             tabBarStyle: {
                 backgroundColor: colors.background,
                 borderTopWidth: 1,
-                borderTopColor: colors.border
+                borderTopColor: colors.border,
+                height: 50,
+                paddingBottom: 0,
             },
             tabBarIcon:(props) => {
                 if(route.name === 'FocusTimerTab'){

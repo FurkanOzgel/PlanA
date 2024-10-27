@@ -18,7 +18,7 @@ function TodoRouter() {
         setPopUpVisible(true);
     }
 
-    return (
+    return ( //TODO: Change name of PopUpInput to TodoListInput
         <View style={theme.background}>
             <TabHeader text={"ToDo"}/>
             <PopUpInput visible={popUpVisible} setVisible={setPopUpVisible}/>

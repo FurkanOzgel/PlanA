@@ -33,12 +33,13 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     const inputRef = useRef<TextInput>(null);
 
     const [task, setTask] = useState('');
-    const [visibleModal, setVisibleModal] = useState('');
+    const [visibleBtnModal, setVisibleBtnModal] = useState('');
    
     const dispatch = useDispatch();
     const selector = useSelector((state: any) => state.ToDo);
     const list = selector.todoLists.find((list: any) => list.id === listId);
     const isSvg = list?.icon.includes('svg');
+    const isDarkList = ["My Day", "All"].includes(list.name) 
 
     useEffect(() => {
         if(visible){
@@ -73,9 +74,18 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     }
     
     const cancelInput = () => {
-        setVisible(!visible);
+        setVisible(false);
+        setVisibleBtnModal('');
         setTask('');
     };
+
+    const visibleModalSetter = (visibleModal: string) => {
+        if(visibleBtnModal === visibleModal){
+            setVisibleBtnModal('');
+        } else {
+            setVisibleBtnModal(visibleModal);
+        }
+    }
 
     const DownButton = ({ButtonSvg, Title, onPress}: {ButtonSvg: string, Title: string, onPress: () => void}): React.JSX.Element => { 
         return (
@@ -88,15 +98,18 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         );
     };
 
-    const ListButton = ({onPress}: {onPress: () => void}): React.JSX.Element => { 
+    const ListButton = ({onPress}: {onPress: () => void}): React.JSX.Element => {
         return (
             <TouchableOpacity onPress={onPress}>
             {!isSvg ?
                 <View style={styles.down_btn}>
                     <Text style={styles.down_btn_text}>{list.icon}</Text>
                     <Text style={styles.down_btn_text}>{list.name}</Text>
-                </View>:
-            null}
+                </View>: isDarkList ? null: 
+                <View style={styles.down_btn}>
+                    <SvgXml xml={list.icon}/>
+                    <Text style={styles.down_btn_text}>{list.name}</Text>
+                </View>}
             </TouchableOpacity>
         );
     }
@@ -106,11 +119,12 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             animationType="none"
             transparent={true}
             visible={visible}
-            onRequestClose={() => {
-                setVisible(!visible);
-                }}>
+            onRequestClose={() => setVisible(!visible)}>
             <View style={styles.modalContainer}>
             <View style={styles.modalView}>
+                <ChooseList visible={visibleBtnModal === "ChooseList"} setVisible={setVisibleBtnModal} listId={listId}/>
+                <View style={{backgroundColor: colors.component_backgroud}}>
+
                 <View style={styles.up_section}>
                     <View style={styles.circle}/>
                     <TextInput
@@ -128,15 +142,14 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                     </TouchableOpacity>
                 </View>
                 <ScrollView style={styles.down_section} horizontal={true} keyboardShouldPersistTaps='handled'>
-                    <ListButton onPress={() => {setVisibleModal('ChooseList')}}/>
-                    <ChooseList visible={visibleModal === "ChooseList"} listId={listId}/>
-
+                    <ListButton onPress={() => {visibleModalSetter('ChooseList')}}/>
                     <DownButton ButtonSvg={sun} Title="My Day" onPress={()=>{}}/>
                     <DownButton ButtonSvg={addNotification} Title="Add Reminder" onPress={()=>{}}/>
                     <DownButton ButtonSvg={repeatSquare} Title="Repeat" onPress={()=>{}}/>
                     <DownButton ButtonSvg={trackChanges} Title="Incremantable" onPress={()=>{}}/>
                     <DownButton ButtonSvg={flag} Title="New Habit" onPress={()=>{}}/>
                 </ScrollView>
+                </View>
             </View>
             </View>
         </Modal>
