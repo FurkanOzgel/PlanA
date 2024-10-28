@@ -11,6 +11,7 @@ import TaskInput from './components/TaskInput';
 import TaskCard from './components/TaskCard';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { isToday } from '../../../utils/date';
 
 function TodoList({navigation, route}: any): React.JSX.Element {
     const [taskInputVisible, setTaskInputVisible] = useState(false);
@@ -28,7 +29,17 @@ function TodoList({navigation, route}: any): React.JSX.Element {
     const selector = useSelector((state: any) => state.ToDo);
 
     const listId = route.params.TodoListData.id;
-    const TodoList = selector.todoLists.find((list: any) => list.id === listId);
+    let TodoList = {...selector.todoLists.find((list: any) => list.id === listId)}
+
+    if(TodoList.name === 'My Day') {
+        TodoList.tasks = [];
+        selector.todoLists.forEach((list: any) => {
+            list.tasks.forEach((task: any) => {
+                if(isToday(task.makeToday)) {
+                    TodoList.tasks.push(task);
+                }});
+            });
+    }
 
     const dispatch = useDispatch();
 

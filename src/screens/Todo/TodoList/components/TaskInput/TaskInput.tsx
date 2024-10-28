@@ -19,6 +19,7 @@ import { addNotification, repeatSquare, trackChanges, flag, arrowBack, sun } fro
 import { useDispatch, useSelector } from 'react-redux';
 import { SvgXml } from 'react-native-svg';
 import ChooseList from './btn_modals/ChooseList';
+import SetReminder from './btn_modals/SetReminder';
 
 interface TaskInputProps {
     visible: boolean;
@@ -31,12 +32,14 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
 
     const [task, setTask] = useState('');
     const [visibleBtnModal, setVisibleBtnModal] = useState('');
-    const [ listState, setListState ] = useState(listId);
+    const [listState, setListState] = useState(listId);
 
     const dispatch = useDispatch();
     const selector = useSelector((state: any) => state.ToDo);
     const list = selector.todoLists.find((list: any) => list.id === listState);
     const isDarkList = ["My Day", "All"].includes(list?.name);
+    
+    const [makeToday, setMakeToday] = useState(list.name == "My Day" ? true: false);
 
     useEffect(() => {
         if(visible){
@@ -63,7 +66,8 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             time: new Date().toISOString(),
             id: generateRandomId(),
             isStarred: false,
-            listId: listState
+            listId: listState,
+            makeToday: makeToday ? new Date().toISOString() : undefined,
         };
         dispatch({ type: 'ADD_TODO', payload: newTask });
         setVisible(!visible);
@@ -112,6 +116,17 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         );
     }
 
+    const MyDayButton = ({ButtonSvg, Title, onPress}: {ButtonSvg: string, Title: string, onPress: () => void}): React.JSX.Element => {
+        return (
+            <TouchableOpacity onPress={onPress}>
+                <View style={[styles.down_btn, {backgroundColor: makeToday ? "blue": "rgb(0,0,0,0)"}]}>
+                    <SvgXml xml={ButtonSvg} width="24" height="24" fill={theme.text.color} />
+                    <Text style={styles.down_btn_text}>{Title}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    }
+
     return(
         <Modal
             animationType="none"
@@ -120,9 +135,10 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             onRequestClose={() => setVisible(!visible)}>
             <View style={styles.modalContainer}>
             <View style={styles.modalView}>
-                <ChooseList visible={visibleBtnModal === "ChooseList"} setVisible={setVisibleBtnModal} listId={listState} setListId={setListState}/>
+                <ChooseList visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
+                    listId={listState} setListId={setListState}/>
+                <SetReminder visible={visibleBtnModal == "SetReminder"} setVisible={setVisibleBtnModal}/>
                 <View style={{backgroundColor: colors.component_backgroud}}>
-
                 <View style={styles.up_section}>
                     <View style={styles.circle}/>
                     <TextInput
@@ -141,8 +157,8 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                 </View>
                 <ScrollView style={styles.down_section} horizontal={true} keyboardShouldPersistTaps='handled'>
                     <ListButton onPress={() => {visibleModalSetter('ChooseList')}}/>
-                    <DownButton ButtonSvg={sun} Title="My Day" onPress={()=>{}}/>
-                    <DownButton ButtonSvg={addNotification} Title="Add Reminder" onPress={()=>{}}/>
+                    <MyDayButton ButtonSvg={sun} Title="My Day" onPress={()=>{setMakeToday(!makeToday)}}/>
+                    <DownButton ButtonSvg={addNotification} Title="Add Reminder" onPress={()=>{visibleModalSetter("SetReminder")}}/>
                     <DownButton ButtonSvg={repeatSquare} Title="Repeat" onPress={()=>{}}/>
                     <DownButton ButtonSvg={trackChanges} Title="Incremantable" onPress={()=>{}}/>
                     <DownButton ButtonSvg={flag} Title="New Habit" onPress={()=>{}}/>
