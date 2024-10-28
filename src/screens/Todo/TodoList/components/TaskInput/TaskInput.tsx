@@ -4,12 +4,9 @@ import {
     Modal,
     TextInput,
     Text,
-    TouchableNativeFeedback,
     ScrollView,
-    Alert,
     Keyboard,
     TouchableOpacity,
-    KeyboardAvoidingView
   } from 'react-native';
 
 import styles from './TaskInput.style';
@@ -34,12 +31,12 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
 
     const [task, setTask] = useState('');
     const [visibleBtnModal, setVisibleBtnModal] = useState('');
-   
+    const [ listState, setListState ] = useState(listId);
+
     const dispatch = useDispatch();
     const selector = useSelector((state: any) => state.ToDo);
-    const list = selector.todoLists.find((list: any) => list.id === listId);
-    const isSvg = list?.icon.includes('svg');
-    const isDarkList = ["My Day", "All"].includes(list.name) 
+    const list = selector.todoLists.find((list: any) => list.id === listState);
+    const isDarkList = ["My Day", "All"].includes(list?.name);
 
     useEffect(() => {
         if(visible){
@@ -66,13 +63,13 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             time: new Date().toISOString(),
             id: generateRandomId(),
             isStarred: false,
-            listId: listId
+            listId: listState
         };
         dispatch({ type: 'ADD_TODO', payload: newTask });
         setVisible(!visible);
         setTask('');
     }
-    
+
     const cancelInput = () => {
         setVisible(false);
         setVisibleBtnModal('');
@@ -87,7 +84,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         }
     }
 
-    const DownButton = ({ButtonSvg, Title, onPress}: {ButtonSvg: string, Title: string, onPress: () => void}): React.JSX.Element => { 
+    const DownButton = ({ButtonSvg, Title, onPress}: {ButtonSvg: string, Title: string, onPress: () => void}): React.JSX.Element => {
         return (
             <TouchableOpacity onPress={onPress}>
                 <View style={styles.down_btn}>
@@ -99,16 +96,17 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     };
 
     const ListButton = ({onPress}: {onPress: () => void}): React.JSX.Element => {
+        const updatedList = selector.todoLists.filter((list: any) => list.id == listState)[0];
         return (
             <TouchableOpacity onPress={onPress}>
-            {!isSvg ?
+            {!updatedList.icon.includes("svg") ?
                 <View style={styles.down_btn}>
-                    <Text style={styles.down_btn_text}>{list.icon}</Text>
-                    <Text style={styles.down_btn_text}>{list.name}</Text>
-                </View>: isDarkList ? null: 
+                    <Text style={styles.down_btn_text}>{updatedList.icon}</Text>
+                    <Text style={styles.down_btn_text}>{updatedList.name}</Text>
+                </View>: isDarkList ? null:
                 <View style={styles.down_btn}>
-                    <SvgXml xml={list.icon}/>
-                    <Text style={styles.down_btn_text}>{list.name}</Text>
+                    <SvgXml xml={updatedList.icon}/>
+                    <Text style={styles.down_btn_text}>{updatedList.name}</Text>
                 </View>}
             </TouchableOpacity>
         );
@@ -122,7 +120,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             onRequestClose={() => setVisible(!visible)}>
             <View style={styles.modalContainer}>
             <View style={styles.modalView}>
-                <ChooseList visible={visibleBtnModal === "ChooseList"} setVisible={setVisibleBtnModal} listId={listId}/>
+                <ChooseList visible={visibleBtnModal === "ChooseList"} setVisible={setVisibleBtnModal} listId={listState} setListId={setListState}/>
                 <View style={{backgroundColor: colors.component_backgroud}}>
 
                 <View style={styles.up_section}>

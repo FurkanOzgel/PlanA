@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
     View,
-    Text,
     FlatList
 } from 'react-native';
 
-import styles from './TodoList.style';
 import HeaderBar from './components/HeaderBar';
 import { theme } from '../../../styles/theme.style';
 import AddButton from '../../../components/AddButton';
