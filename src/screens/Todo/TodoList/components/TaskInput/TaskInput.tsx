@@ -23,7 +23,7 @@ import BottomBtn from './bottomButtons/BottomBtn';
 import ListSelectionBtn from './bottomButtons/ListSelectionBtn';
 import MyDayButton from './bottomButtons/MydayBtn';
 
-import ChooseList from './btn_modals/ChooseList';
+import ListSelection from './btn_modals/ListSelection';
 import SetReminder from './btn_modals/SetReminder';
 import Repeat from './btn_modals/Repeat';
 
@@ -102,7 +102,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         <Modal transparent={true} visible={visible} onRequestClose={() => setVisible(!visible)}>
             <View style={styles.modalView}>
                 {/* Modals that are visible when the bottom buttons are clicked */}
-                <ChooseList visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
+                <ListSelection visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
                     listId={listIdState} setListId={setListIdState}/>
                 <SetReminder visible={visibleBtnModal == "SetReminder"} setVisible={setVisibleBtnModal}/>
                 <Repeat visible={visibleBtnModal == "Repeat"} setVisible={setVisibleBtnModal}/>

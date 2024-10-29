@@ -4,9 +4,9 @@ import { Text, View, TouchableWithoutFeedback, Dimensions, FlatList, TouchableOp
 import { SvgXml } from "react-native-svg";
 import { useSelector } from "react-redux";
 
-import styles from "./ChooseList.style";
+import styles from "./ListSelection.style";
 
-function ChooseList({visible, setVisible, listId, setListId}: any): React.JSX.Element {
+function ListSelection({visible, setVisible, listId, setListId}: any): React.JSX.Element {
     const selector = useSelector((state: any) => state.ToDo);
 
     const renderListCart = ({item}: any) => {
@@ -43,4 +43,4 @@ function ChooseList({visible, setVisible, listId, setListId}: any): React.JSX.El
     );
 }
 
-export default ChooseList;
+export default ListSelection;
