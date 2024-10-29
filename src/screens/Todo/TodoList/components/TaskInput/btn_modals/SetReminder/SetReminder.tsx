@@ -16,7 +16,7 @@ function Reminder({visible, setVisible}: SetReminderProps): React.JSX.Element {
 
     return(
         <PopupTemplate visible={visible} setVisible={setVisible} containerHeight={200}>
-            <View style={{alignSelf:"flex-end",height: 200, width: 200, backgroundColor: "red"}}>
+            <View style={{alignSelf:"center",height: 200, width: 200, backgroundColor: "red"}}>
             </View>
         </PopupTemplate>
     );

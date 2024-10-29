@@ -44,6 +44,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     
     const selector = useSelector((state: any) => state.ToDo);
     const list = selector.todoLists.find((list: any) => list.id === listIdState);
+    const allTasksListId = selector.todoLists.find((list: any) => list.name === "All")?.id;
     
     const [makeToday, setMakeToday] = useState(list.name == "My Day" ? true: false);
 
@@ -76,7 +77,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             time: new Date().toISOString(),
             id: generateRandomId(),
             isStarred: false,
-            listId: listIdState,
+            listId: list.name == "My Day" ? allTasksListId: listIdState,
             makeToday: makeToday ? new Date().toISOString() : undefined,
         };
         dispatch({ type: 'ADD_TODO', payload: newTask });
