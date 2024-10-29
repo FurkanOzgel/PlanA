@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, View, TouchableWithoutFeedback, Dimensions, FlatList, TouchableOpacity} from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 
 import { SvgXml } from "react-native-svg";
 import { useSelector } from "react-redux";
 
 import styles from "./ListSelection.style";
+import PopupTemplate from "../PopupTemplate";
 
 function ListSelection({visible, setVisible, listId, setListId}: any): React.JSX.Element {
     const selector = useSelector((state: any) => state.ToDo);
@@ -29,17 +30,14 @@ function ListSelection({visible, setVisible, listId, setListId}: any): React.JSX
     }
 
     return (
-        <View>
-            <TouchableWithoutFeedback onPress={() => setVisible('')}>
-                <View style={{height: Dimensions.get("window").height, width:"100%", position: "absolute", top:-(Dimensions.get("window").height-200)}}/>
-            </TouchableWithoutFeedback>
+        <PopupTemplate visible={visible} setVisible={setVisible} containerHeight={200}>
             <FlatList
-                style={{height: 200, width: 200, backgroundColor: 'gray'}}
+                style={{height: 200, width: 200, backgroundColor: 'gray', alignSelf: 'center'}}
                 data={selector.todoLists}
                 renderItem={renderListCart}
                 keyExtractor={item => item.id.toString()}
                 keyboardShouldPersistTaps="always"/>
-        </View>
+        </PopupTemplate>
     );
 }
 

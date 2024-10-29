@@ -1,18 +1,13 @@
 import React from 'react';
-import {
-    View,
-    Text,
-    TouchableWithoutFeedback,
-    Dimensions,
-} from 'react-native';
+import { View, TouchableWithoutFeedback, Dimensions } from 'react-native';
 
 import styles from './SetReminder.style';
+import PopupTemplate from '../PopupTemplate';
 
 interface SetReminderProps {
     visible: boolean;
     setVisible: (visible: string) => void;
 }
-
 
 function Reminder({visible, setVisible}: SetReminderProps): React.JSX.Element {
     if(!visible){
@@ -20,14 +15,10 @@ function Reminder({visible, setVisible}: SetReminderProps): React.JSX.Element {
     }
 
     return(
-        <View>
-        <TouchableWithoutFeedback onPress={() => setVisible('')}>
-            <View style={{height: Dimensions.get("window").height, width:"100%", position: "absolute", top:-(Dimensions.get("window").height-200)}}/>
-        </TouchableWithoutFeedback>
-        <View style={{alignSelf:"flex-end",height: 200, width: 200, backgroundColor: "red"}}>
-
-        </View>
-        </View>
+        <PopupTemplate visible={visible} setVisible={setVisible} containerHeight={200}>
+            <View style={{alignSelf:"flex-end",height: 200, width: 200, backgroundColor: "red"}}>
+            </View>
+        </PopupTemplate>
     );
 };
 
