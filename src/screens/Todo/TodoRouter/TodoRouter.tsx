@@ -32,8 +32,8 @@ function TodoRouter() {
                 <FlatList
                     data={TodoLists.slice(3)}
                     renderItem={({item}) => <TodoListCard group={item}/> }/>
-                <AddButton onPress={handleAddList}/>
             </View>
+            <AddButton onPress={handleAddList}/>
         </View>
     );
 };
