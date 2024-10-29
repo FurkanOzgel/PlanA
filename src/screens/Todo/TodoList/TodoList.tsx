@@ -1,36 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import {
-    View,
-    FlatList
-} from 'react-native';
+import { View, FlatList} from 'react-native';
 
+//Custom components
 import HeaderBar from './components/HeaderBar';
-import { theme } from '../../../styles/theme.style';
 import AddButton from '../../../components/AddButton';
 import TaskInput from './components/TaskInput';
 import TaskCard from './components/TaskCard';
 
+//Functions
 import { useSelector, useDispatch } from 'react-redux';
 import { isToday } from '../../../utils/date';
 
+//Styles
+import { theme } from '../../../styles/theme.style';
+
 function TodoList({navigation, route}: any): React.JSX.Element {
+    //Props
+    const listId = route.params.TodoListData.id;
+    
+    //States
     const [taskInputVisible, setTaskInputVisible] = useState(false);
     const [selectedTasks, setSelectedTasks] = useState<number[]>([]);
     const [selectionMode, setSeletionMode] = useState(false);
-
-    useEffect(() => {
-        if(selectedTasks.length > 0){
-            setSeletionMode(true);
-        } else {
-            setSeletionMode(false);
-        }
-    }, [selectedTasks]);
-
     const selector = useSelector((state: any) => state.ToDo);
-
-    const listId = route.params.TodoListData.id;
+    
     let TodoList = {...selector.todoLists.find((list: any) => list.id === listId)}
-
+    
+    // If the list is 'My Day' then only show tasks that have makeToday set to the date of today
     if(TodoList.name === 'My Day') {
         TodoList.tasks = [];
         selector.todoLists.forEach((list: any) => {
@@ -39,10 +35,19 @@ function TodoList({navigation, route}: any): React.JSX.Element {
                     TodoList.tasks.push(task);
                 }});
             });
-    }
-
+        }
+        
+    //Hooks
+    useEffect(() => {
+        if(selectedTasks.length > 0){
+            setSeletionMode(true);
+        } else {
+            setSeletionMode(false);
+        }
+    }, [selectedTasks]);
+        
+    //Functions
     const dispatch = useDispatch();
-
     const handleDelete = () => {
         selectedTasks.forEach((taskId) => {
             dispatch({type: 'DELETE_TODO', payload: {id: taskId, listId: listId}});

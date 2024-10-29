@@ -6,12 +6,20 @@ import {
 
 import styles from './Repeat.style';
 
+import PopupTemplate from '../PopupTemplate';
 
-function Repeat(): React.JSX.Element {
+interface RepeatProps {
+    visible: boolean;
+    setVisible: (visible: string) => void;
+}
+
+function Repeat({visible, setVisible}: RepeatProps): React.JSX.Element {
     return(
-        <View>
-            <Text>Repeat</Text>
-        </View>
+        <PopupTemplate visible={visible} setVisible={setVisible}>
+            <View style={{}}>
+                <Text style={{}}>Repeat</Text>
+            </View>
+        </PopupTemplate>
     );
 };
 

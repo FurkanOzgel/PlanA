@@ -1,5 +1,5 @@
-import { StyleSheet, Dimensions} from 'react-native';
-import { colors } from '../../../../../styles/theme.style';
+import {StyleSheet, Dimensions} from 'react-native';
+import {colors} from '../../../../../styles/theme.style';
 
 const styles = StyleSheet.create({
     container: {
@@ -7,12 +7,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    modalContainer: {
+    modalView: {
         flex: 1,
         justifyContent: 'flex-end',
         backgroundColor: 'rgba(0,0,0,0.5)',
-    },
-    modalView: {
         width: '100%',
     },
     modalText: {
@@ -25,16 +23,16 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: '50%',
         alignSelf: 'flex-end',
-        justifyContent:"space-between"
+        justifyContent: 'space-between',
     },
     input: {
-        width: Dimensions.get("window").width - 86,
+        width: Dimensions.get('window').width - 86,
         height: 40,
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
         borderColor: colors.text,
-        color: "white"
+        color: 'white',
     },
     summit_btn: {
         width: 30,
@@ -42,7 +40,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.default_toDo_color
+        backgroundColor: colors.default_toDo_color,
     },
     up_section: {
         width: '100%',
@@ -51,8 +49,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 8,
     },
-    down_section: { 
-        width: Dimensions.get("window").width - 10,
+    down_section: {
+        width: Dimensions.get('window').width - 10,
         flexDirection: 'row',
     },
     circle: {
@@ -72,9 +70,8 @@ const styles = StyleSheet.create({
         color: colors.text,
         fontSize: 16,
         marginLeft: 5,
-        fontWeight: 'thin'
+        fontWeight: 'thin',
     }
-    
 });
 
 export default styles;

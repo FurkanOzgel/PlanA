@@ -39,7 +39,7 @@ function Target(): React.JSX.Element {
             <Button title="Add Group" onPress={() => createGroup()} />
             <Button title="Add Target" onPress={() => createTarget()}/>
             <Button title='Log' onPress={() => console.log(selector)} />
-            <QuarterlyTargetGroup />
+            <QuarterlyTargetGroup/>
             <TargetGroup groupName={"Special"}/>
         </View>
     );
