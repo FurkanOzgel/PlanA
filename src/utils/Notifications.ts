@@ -16,7 +16,7 @@ class Notifications {
                 channelId: 'task-reminder',
                 channelName: 'Task Reminder',
             },
-            (created) => console.log(`createChannel returned '${created}'`),
+            (created) => {},
         );
     }
 
@@ -27,7 +27,7 @@ class Notifications {
             message: message,
             date: date,
             allowWhileIdle: true,
-            id: taskId,
+            userInfo: { taskId: taskId }
         });
     }
 }
