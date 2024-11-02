@@ -8,9 +8,7 @@ interface PopupTemplateProps {
     containerHeight: number;
 }
 
-function PopupTemplate({children ,visible, setVisible, containerHeight}: PopupTemplateProps): React.JSX.Element {
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-    
+function PopupTemplate({children ,visible, setVisible, containerHeight}: PopupTemplateProps): React.JSX.Element {    
     const styles = StyleSheet.create({
         cancelArea: {
             height: Dimensions.get("window").height, 

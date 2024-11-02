@@ -105,7 +105,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                 {/* Modals that are visible when the bottom buttons are clicked */}
                 <ListSelection visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
                     listId={listIdState} setListId={setListIdState}/>
-                <SetReminder visible={visibleBtnModal == "SetReminder"} setVisible={setVisibleBtnModal}/>
+                <SetReminder visible={visibleBtnModal == "SetReminder"} setVisibleModalName={setVisibleBtnModal}/>
                 <Repeat visible={visibleBtnModal == "Repeat"} setVisible={setVisibleBtnModal}/>
 
                 {/* Main Task Input */}
