@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
 import { View, Text, useWindowDimensions, Button } from 'react-native';
-import { checkNotificationPermission } from '../../../../../../../utils/Android';
 
 //Styles
 import styles from './SetReminder.style';
-
-//Utils
-import Notifications from '../../../../../../../utils/Notifications';
 
 //Custom Components
 import PopupTemplate from '../PopupTemplate';
@@ -14,17 +10,22 @@ import PopupTemplate from '../PopupTemplate';
 //Third Party Libraries
 import DatePicker from 'react-native-date-picker';
 
+// Utils
+import { checkNotificationPermission } from '../../../../../../../utils/Android';
+
 interface SetReminderProps {
+    setReminderDate: (date: Date) => void;
     visible: boolean;
     setVisibleModalName: (visible: string) => void;
 }
 
-function Reminder({visible, setVisibleModalName}: SetReminderProps): React.JSX.Element {
-    const [date, setDate] = useState(new Date())
+function Reminder({ setReminderDate, visible, setVisibleModalName}: SetReminderProps): React.JSX.Element {
+    const [date, setDate] = useState(new Date());
 
-    function setReminder() {
-        checkNotificationPermission(); //Check if the app has permission to send notifications for Android
-        Notifications.scheduleNotification("Task Reminder", "Task Reminder", date);
+    function createReminder() {
+        checkNotificationPermission();
+        setReminderDate(date);
+        setVisibleModalName('');
     }
 
     function cancel() {
@@ -47,7 +48,7 @@ function Reminder({visible, setVisibleModalName}: SetReminderProps): React.JSX.E
                 minimumDate={new Date()}
                 onDateChange={setDate}
             /> 
-            <Button title="Set Reminder" onPress={setReminder}/>
+            <Button title="Set Reminder" onPress={createReminder}/>
             <Button title="Cancel" onPress={cancel}/>
             </View>
         </PopupTemplate>
@@ -55,3 +56,4 @@ function Reminder({visible, setVisibleModalName}: SetReminderProps): React.JSX.E
 };
 
 export default Reminder;
+export {}

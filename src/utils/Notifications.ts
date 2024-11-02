@@ -1,4 +1,5 @@
 import PushNotification from "react-native-push-notification";
+import { Platform } from "react-native";
 
 class Notifications {
     constructor() {
@@ -12,26 +13,21 @@ class Notifications {
 
         PushNotification.createChannel(
             {
-                channelId: 'default-channel-id',
-                channelName: 'Default Channel Name'
-            }
+                channelId: 'task-reminder',
+                channelName: 'Task Reminder',
+            },
+            (created) => console.log(`createChannel returned '${created}'`),
         );
     }
 
-    scheduleNotification(title, message, date) {
+    setTaskNotification(title: string, message: string, taskId:number, date: Date) {
         PushNotification.localNotificationSchedule({
-            channelId: "deneme",
+            channelId: "task-reminder",
             title: title,
             message: message,
             date: date,
-        });
-    }
-
-    localNotification(title, message) {
-        PushNotification.localNotification({
-            channelId: "default-channel-id",
-            title: title,
-            message: message,
+            allowWhileIdle: true,
+            id: taskId,
         });
     }
 }

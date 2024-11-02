@@ -9,7 +9,8 @@ import { colors, theme } from '../../../../../styles/theme.style';
 import { ToDoData } from '../../../../../context/ToDo/models';
 
 // Utils
-import { generateRandomId } from '../../../../../utils/id';
+import { generateRandomId } from '../../../../../utils/id';//Utils
+import Notifications from '../../../../../utils/Notifications';
 
 // Assets
 import { addNotification, repeatSquare, trackChanges, flag, arrowBack, sun } from '../../../../../assets/svg';
@@ -47,6 +48,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     const allTasksListId = selector.todoLists.find((list: any) => list.name === "All")?.id;
     
     const [makeToday, setMakeToday] = useState(list.name == "My Day" ? true: false);
+    const [reminderDate, setReminderDate] = useState(new Date());
 
     // Hooks
     useEffect(() => {
@@ -71,11 +73,19 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     const dispatch = useDispatch(); 
 
     function createTask() {
+        if(task === '') return;
+
+        const ramdomId = generateRandomId();
+
+        if(reminderDate > new Date()){
+            Notifications.setTaskNotification(task, 'Reminder', ramdomId, reminderDate);
+        }
+        
         const newTask: ToDoData = {
             isDone: false,
             title: task,
             time: new Date().toISOString(),
-            id: generateRandomId(),
+            id: ramdomId,
             isStarred: false,
             listId: list.name == "My Day" ? allTasksListId: listIdState,
             makeToday: makeToday ? new Date().toISOString() : undefined,
@@ -105,7 +115,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                 {/* Modals that are visible when the bottom buttons are clicked */}
                 <ListSelection visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
                     listId={listIdState} setListId={setListIdState}/>
-                <SetReminder visible={visibleBtnModal == "SetReminder"} setVisibleModalName={setVisibleBtnModal}/>
+                <SetReminder visible={visibleBtnModal == "SetReminder"} setVisibleModalName={setVisibleBtnModal} setReminderDate={setReminderDate}/>
                 <Repeat visible={visibleBtnModal == "Repeat"} setVisible={setVisibleBtnModal}/>
 
                 {/* Main Task Input */}
