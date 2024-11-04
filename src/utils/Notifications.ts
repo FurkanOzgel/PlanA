@@ -4,10 +4,6 @@ import { Platform } from "react-native";
 class Notifications {
     constructor() {
         PushNotification.configure({
-            onNotification: function (notification) {
-                console.log("NOTIFICATION:", notification);
-            },
-
             requestPermissions: Platform.OS === 'ios'
         });
 

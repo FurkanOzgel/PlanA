@@ -2,12 +2,10 @@ import os
 from tkinter import Tk
 from tkinter.filedialog import askdirectory
 
-
 Tk().withdraw()
 
 initial_dir = "C:/Users/furka/Desktop/Start-Up/PlanA/src"
 target_path = askdirectory(title="Select Target Directory", initialdir=initial_dir)
-
 
 print("")
 name = input("Enter the name of the component: ")
