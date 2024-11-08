@@ -22,11 +22,11 @@ import { SvgXml } from 'react-native-svg';
 // Custom Components
 import BottomBtn from './bottomButtons/BottomBtn';
 import ListSelectionBtn from './bottomButtons/ListSelectionBtn';
-import MyDayButton from './bottomButtons/MydayBtn';
+import BoolenBtn from './bottomButtons/BoolenBtn';
 
 import ListSelection from './btn_modals/ListSelection';
 import SetReminder from './btn_modals/SetReminder';
-import Repeat from './btn_modals/Repeat';
+// import Repeat from './btn_modals/Repeat';
 
 interface TaskInputProps {
     visible: boolean;
@@ -35,6 +35,7 @@ interface TaskInputProps {
 }
 
 function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.Element {
+    const nowDate = new Date().toISOString();
     // Refs
     const inputRef = useRef<TextInput>(null);
 
@@ -48,7 +49,8 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
     const allTasksListId = selector.todoLists.find((list: any) => list.name === "All")?.id;
     
     const [makeToday, setMakeToday] = useState(list.name == "My Day" ? true: false);
-    const [reminderDate, setReminderDate] = useState(new Date());
+    const [reminderDate, setReminderDate] = useState<Date>(new Date(2006, 8, 30));
+    const [habit, setHabit] = useState("");
 
     // Hooks
     useEffect(() => {
@@ -88,8 +90,10 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
             id: ramdomId,
             isStarred: false,
             listId: list.name == "My Day" ? allTasksListId: listIdState,
-            makeToday: makeToday ? new Date().toISOString() : undefined,
+            makeToday: makeToday ? nowDate : undefined,
+            notificationConfig: reminderDate > new Date() ? reminderDate.toISOString() : undefined,
         };
+        console.log(newTask);
         dispatch({ type: 'ADD_TODO', payload: newTask });
         setVisible(!visible);
         setTask('');
@@ -99,6 +103,10 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         setVisible(false);
         setVisibleBtnModal('');
         setTask('');
+        setHabit('');
+        setMakeToday(list.name == "My Day" ? true: false);
+        setReminderDate(new Date(2006, 8, 30));
+        setListIdState(listId);
     };
 
     function visibleModalSetter(visibleModal: string) {
@@ -109,6 +117,10 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
         }
     }
 
+    function habitDateSetter() {
+        habit ? setHabit("") : setHabit(nowDate);
+    }
+
     return(
         <Modal transparent={true} visible={visible} onRequestClose={() => setVisible(!visible)}>
             <View style={styles.modalView}>
@@ -116,7 +128,7 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                 <ListSelection visible={visibleBtnModal == "ChooseList"} setVisible={setVisibleBtnModal} 
                     listId={listIdState} setListId={setListIdState}/>
                 <SetReminder visible={visibleBtnModal == "SetReminder"} setVisibleModalName={setVisibleBtnModal} setReminderDate={setReminderDate}/>
-                <Repeat visible={visibleBtnModal == "Repeat"} setVisible={setVisibleBtnModal}/>
+                {/* <Repeat visible={visibleBtnModal == "Repeat"} setVisible={setVisibleBtnModal}/>  TODO: New version feature*/}
 
                 {/* Main Task Input */}
                 <View style={{backgroundColor: colors.component_backgroud}}>
@@ -141,11 +153,11 @@ function TaskInput({visible, setVisible, listId}: TaskInputProps ): React.JSX.El
                     {/* Bottom Buttons */}
                     <ScrollView style={styles.down_section} horizontal={true} keyboardShouldPersistTaps='handled'>
                         <ListSelectionBtn onPress={() => {visibleModalSetter('ChooseList')}} selector={selector} list={list} listIdState={listIdState}/>
-                        <MyDayButton ButtonSvg={sun} Title="My Day" onPress={()=>{setMakeToday(!makeToday)}} makeToday={makeToday}/>
+                        <BoolenBtn ButtonSvg={sun} Title="My Day" onPress={()=>{setMakeToday(!makeToday)}} state={makeToday}/>
                         <BottomBtn ButtonSvg={addNotification} Title="Add Reminder" onPress={()=>{visibleModalSetter("SetReminder")}}/>
-                        <BottomBtn ButtonSvg={repeatSquare} Title="Repeat" onPress={()=>{visibleModalSetter("Repeat")}}/>
-                        <BottomBtn ButtonSvg={trackChanges} Title="Incremantable" onPress={()=>{}}/>
-                        <BottomBtn ButtonSvg={flag} Title="New Habit" onPress={()=>{}}/>
+                        {/* <BottomBtn ButtonSvg={repeatSquare} Title="Repeat" onPress={()=>{visibleModalSetter("Repeat")}}/> TODO: New version feature*/}
+                        {/* <BottomBtn ButtonSvg={trackChanges} Title="Incremantable" onPress={()=>{}}/> TODO: This feature will be implemented when will develop targets tab.*/}
+                        <BoolenBtn ButtonSvg={flag} Title="New Habit" onPress={habitDateSetter} state={habit}/>
                     </ScrollView>
                 </View>
             </View>          

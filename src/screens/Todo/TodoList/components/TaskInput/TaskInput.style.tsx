@@ -71,7 +71,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 5,
         fontWeight: 'thin',
-    }
+    },
+    modalContainer: {
+        flex: 1,
+        backgroundColor: "red"
+    },
 });
 
 export default styles;

@@ -9,8 +9,7 @@ export interface ToDoData {
     dueDate?: number;
     incremantalId?: number;
     incremantValue?: number;
-    repateConfig?: {};
-    notificationConfig?: {};
+    notificationConfig?: string;
     habitConfig?: {};
 }
 

@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    topContainer: {
+        marginLeft: 15
+    },
     container: {
         margin: 10,
         borderRadius: 10, 
@@ -19,8 +22,11 @@ export default StyleSheet.create({
     },
     listContainer: {
         borderRadius: 10, // Border radius for the list container to match the dropdown
-        backgroundColor: '#ddd',
-        overflow: 'hidden', // Ensures border radius applies to children
+        overflow: 'hidden', // Ensures border radius applies to children,
+        position: 'absolute',
+        top: 50,
+        width: '100%',
+
     },
     activeItem: {
         padding: 10,
@@ -28,7 +34,7 @@ export default StyleSheet.create({
     },
     deactiveItem: {
         padding: 10,
-        backgroundColor: '#fff',
+        backgroundColor: 'green',
     },
     activeLabel: {
         color: '#007BFF',

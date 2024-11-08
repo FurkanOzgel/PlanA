@@ -67,7 +67,7 @@ function DropdownPicker({
     }, [selectedValue]);
 
     return (
-        <View style={viewStyle}>
+        <View style={[viewStyle, styles.topContainer]}>
             <TouchableWithoutFeedback style={[styles.container, containerStyle]} onPress={() => setIsOpen(!isOpen)}>
                 <View style={styles.dropdownHeader}>
                     <Text style={[styles.placeholderText, placeholderStyle]}>

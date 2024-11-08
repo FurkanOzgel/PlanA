@@ -41,7 +41,7 @@ function RepeatMode({mode, selected, setSelected}: RepeatModeProps): React.JSX.E
                 return(
                     <View style={styles.modeView}>
                         <TextInput placeholder="1" placeholderTextColor={"white"} style={{borderBottomWidth: 1, borderBottomColor: "lightgrey", color:"white"}}/> 
-                        <Text style={theme.text}>Time Every Day</Text>
+                        <Text>Time Every Day</Text>
                     </View>
                 )
             case "x-week-x-days":
@@ -81,7 +81,7 @@ function RepeatMode({mode, selected, setSelected}: RepeatModeProps): React.JSX.E
     }
 
     return (
-        <TouchableOpacity style={[styles.repeatMode, selected == mode? styles.selectedMode: null]} onPress={handlePress}>
+        <TouchableOpacity style={[styles.repeatMode, selected == mode? styles.selectedMode: null, mode == "x-week-x-days" ? {zIndex: 2} : {zIndex: 1}]} onPress={handlePress}>
             {getRepeatMode()}
         </TouchableOpacity>
         );
