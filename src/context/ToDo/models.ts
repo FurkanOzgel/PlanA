@@ -6,7 +6,6 @@ export interface ToDoData {
     isStarred: boolean;
     listId: number;
     makeToday?: string | undefined;
-    dueDate?: number;
     incremantalId?: number;
     incremantValue?: number;
     notificationConfig?: string;
